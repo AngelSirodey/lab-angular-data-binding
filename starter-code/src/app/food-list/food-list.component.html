@@ -1,15 +1,42 @@
 <p>
-  food-list works!
+  food-list!
 </p>
+
 Search here: <input [(ngModel)]="search"><br><br>
-<hr>
+
+
 <div class="foods" *ngFor="let food of foods | filter:'name':search; let i = index">
-  <span class="name">{{ food.name }}</span><br>
-  <span class="calories">{{ food.calories }}</span><br>
-  <img src="{{food.image}}" alt="" width="100px" height="100px"><br>
-  <span class="quantity">{{ food.quantity }}</span>
+  <span class="middle">{{ food.name }}</span><br>
+  <span class="middle">{{ food.calories }}</span><br>
+  <img class="middle" src="{{food.image}}" alt="" width="100px" height="100px"><br>
+  <span class="middle">{{ food.quantity }}</span><br>
+  <button class="btn" (click)="addList(food)">add to list</button>
+</div>
+
+<button (click)="change()">Add food</button>
+<div action="" *ngIf="active" class="form">
+  <div>
+    <label for="food-name"></label>
+    <input type="text" [(ngModel)]="newFood.name" placeholder="Enter name..">
+  </div>
+  <div>
+    <label for="food-category"></label>
+    <input type="text" [(ngModel)]="newFood.calories" placeholder="Enter calories..">
+  </div>
+  <div>
+    <label for="food-image"></label>
+    <input type="text" [(ngModel)]="newFood.image" placeholder="Enter image url..">
+  </div>
+
+  <button (click)="addFood(newFood); change()">Submit New Food</button>
 </div>
 
 
-
+<ul>
+    <h2>Today's Food</h2>
+    <h3>Calories Count: {{caloriesCount}}</h3>
+    <li *ngFor="let aliments of newList">
+      {{ aliments.name }}
+    </li>
+</ul>
 
